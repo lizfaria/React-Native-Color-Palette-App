@@ -8,10 +8,11 @@
 - State and API calls are managed with React Hooks
 
 *GET STARTED*
-clone library <git clone ...>
-install expo on your computer with <npm install -g expo-cli>
-install dependencies <npm i>
-run application <npm start>
+1. clone library <git clone https://github.com/lizfaria/React-Native-Color-Palette-App.git>
+2. install expo on your computer with <npm install -g expo-cli>
+3. cd into project directory
+4. install dependencies <npm i>
+5. run application <npm start>
 
 *TO DO*
 - Allow user to copy hex code on click of ColorBox

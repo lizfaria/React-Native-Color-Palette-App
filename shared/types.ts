@@ -10,3 +10,13 @@ export type ColorPaletteType = {
   paletteName: string;
   colors: Color[];
 };
+
+export type RootStackParamList = {
+  Home: {
+    newPalette: { paletteName: string; colors: Color[] };
+  };
+  ColorPalette: ColorPaletteType;
+  AddNewPalette: {
+    allColors: Color[];
+  };
+};

@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
-import { RootStackParamList } from './types';
+import { RootStackParamList } from '../shared/types';
 
 type NewPaletteModalNavigationProp = StackNavigationProp<RootStackParamList>;
 type NewPaletteModalRouteProp = RouteProp<RootStackParamList, 'AddNewPalette'>;

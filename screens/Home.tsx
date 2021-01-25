@@ -3,7 +3,7 @@ import { FlatList, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { ColorPaletteType, Color } from '../shared/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
-import { RootStackParamList } from './types';
+import { RootStackParamList } from '../shared/types';
 import PalettePreview from '../components/PalettePreview';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList>;

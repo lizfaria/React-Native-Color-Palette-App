@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { RouteProp } from '@react-navigation/native';
 import { StyleSheet, FlatList } from 'react-native';
 import ColorBox from '../components/ColorBox';
-import { RootStackParamList } from './types';
+import { RootStackParamList } from '../shared/types';
 
 type ColorPaletteScreenRouteProp = RouteProp<
   RootStackParamList,

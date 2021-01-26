@@ -15,9 +15,6 @@
 5. run application <npm start>
 
 ## TO DO
-- Allow user to copy hex code on click of ColorBox
-- disable the modal submit button if the form is invalid
-- display a preview of the colors so the user can see what they're picking
 - create E2E tests with Detox
 - create Unit tests with react-native-testing-library
 - Add a Bottom Tab Navigator 

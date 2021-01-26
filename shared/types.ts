@@ -16,7 +16,7 @@ export type RootStackParamList = {
     newPalette: { paletteName: string; colors: Color[] };
   };
   ColorPalette: ColorPaletteType;
-  AddNewPalette: {
+  Customize: {
     allColors: Color[];
   };
 };

@@ -9,10 +9,10 @@ import PalettePreview from '../components/PalettePreview';
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList>;
 type HomeScreenRouteProp = RouteProp<RootStackParamList, 'Home'>;
 
-type HomeProps = {
+interface HomeProps {
   navigation: HomeScreenNavigationProp;
   route: HomeScreenRouteProp;
-};
+}
 
 const Home: FC<HomeProps> = ({ navigation, route }) => {
   const newPalette = route.params ? route.params.newPalette : null;
@@ -67,7 +67,7 @@ const Home: FC<HomeProps> = ({ navigation, route }) => {
     <>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('AddNewPalette', { allColors })}
+        onPress={() => navigation.navigate('Customize', { allColors })}
       >
         <Text style={styles.buttonText}>Add a color scheme</Text>
       </TouchableOpacity>
@@ -76,7 +76,7 @@ const Home: FC<HomeProps> = ({ navigation, route }) => {
         onRefresh={handleRefresh}
         data={palettes}
         style={styles.list}
-        keyExtractor={(item) => item.paletteName}
+        keyExtractor={(item, index) => item.paletteName + '_' + index}
         renderItem={({ item }) => (
           <PalettePreview
             handlePress={() => navigation.navigate('ColorPalette', item)}

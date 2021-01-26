@@ -1,38 +1,12 @@
 import React, { FC } from 'react';
-import {
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  FlatList,
-  View,
-} from 'react-native';
+import { Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import { ColorPaletteType } from '../shared/types';
+import PaletteBox from './PaletteBox';
 
 interface PalettePreviewProps {
   handlePress: () => void;
   colorPaletteItem: ColorPaletteType;
 }
-
-const styles = StyleSheet.create({
-  text: {
-    fontWeight: 'bold',
-    fontSize: 18,
-    marginBottom: 10,
-  },
-  box: {
-    height: 30,
-    width: 30,
-    marginRight: 10,
-    shadowColor: '#000', //iOS only
-    shadowOffset: { width: 0, height: 1 }, // iOS only
-    shadowOpacity: 0.3, // iOS only,
-    shadowRadius: 1, //iOS only
-    elevation: 2, //android only
-  },
-  list: {
-    marginBottom: 20,
-  },
-});
 
 const PalettePreview: FC<PalettePreviewProps> = ({
   handlePress,
@@ -44,14 +18,23 @@ const PalettePreview: FC<PalettePreviewProps> = ({
       <FlatList
         style={styles.list}
         horizontal
-        data={colorPaletteItem.colors.slice(0, 8)}
+        data={colorPaletteItem.colors.slice(0, 9)}
         keyExtractor={(item, index) => item.hex + '_' + index}
-        renderItem={({ item }) => (
-          <View style={[styles.box, { backgroundColor: item.hex }]} />
-        )}
+        renderItem={({ item }) => <PaletteBox hex={item.hex} />}
       />
     </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  text: {
+    fontWeight: 'bold',
+    fontSize: 18,
+    marginBottom: 10,
+  },
+  list: {
+    marginBottom: 20,
+  },
+});
 
 export default PalettePreview;

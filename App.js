@@ -32,7 +32,7 @@ const App = () => {
           // avoid two top navs
           options={{ headerShown: false }}
         />
-        <RootStack.Screen name="AddNewPalette" component={AddNewPaletteModal} />
+        <RootStack.Screen name="Customize" component={AddNewPaletteModal} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

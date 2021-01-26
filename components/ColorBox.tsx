@@ -32,7 +32,6 @@ const ColorBox: FC<ColorBoxProps> = (props) => {
 
   return (
     <View style={[styles.box, colorStyle]}>
-      {/* TODO: copy the hex code of a color to clipboard when the user taps on it (Clipboard component) */}
       <Text style={(styles.text, textColor)}>
         {props.colorName} {props.hexCode}
       </Text>

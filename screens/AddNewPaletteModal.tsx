@@ -13,14 +13,15 @@ import {
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../shared/types';
+import PaletteBox from '../components/PaletteBox';
 
 type NewPaletteModalNavigationProp = StackNavigationProp<RootStackParamList>;
-type NewPaletteModalRouteProp = RouteProp<RootStackParamList, 'AddNewPalette'>;
+type NewPaletteModalRouteProp = RouteProp<RootStackParamList, 'Customize'>;
 
-type NewPaletteModalProps = {
+interface NewPaletteModalProps {
   navigation: NewPaletteModalNavigationProp;
   route: NewPaletteModalRouteProp;
-};
+}
 
 const AddNewPaletteModal: FC<NewPaletteModalProps> = ({
   navigation,
@@ -28,7 +29,7 @@ const AddNewPaletteModal: FC<NewPaletteModalProps> = ({
 }) => {
   const { allColors } = route.params;
 
-  const [paletteName, setPaletteName] = useState<string>('Palette name');
+  const [paletteName, setPaletteName] = useState<string>('');
   const [selectedColors, setSelectedColors] = useState<Color[]>([]);
 
   const handleUpdate = (color: Color, newValue: boolean) => {
@@ -45,6 +46,9 @@ const AddNewPaletteModal: FC<NewPaletteModalProps> = ({
     if (!paletteName) {
       return Alert.alert('Please enter a palette name');
     }
+    if (selectedColors.length < 3) {
+      return Alert.alert('Please select at least 2 colors');
+    }
     const newPalette = {
       paletteName,
       colors: selectedColors,
@@ -58,22 +62,23 @@ const AddNewPaletteModal: FC<NewPaletteModalProps> = ({
   return (
     <View style={styles.container}>
       <View style={styles.heading}>
-        <Text>Name of your color palette</Text>
+        <Text style={styles.inputLabel}>Name of your color palette</Text>
         <TextInput
           style={styles.input}
           onChangeText={setPaletteName}
           value={paletteName}
         />
       </View>
-
-      {/* TODO: display a preview of the colors so the user can see what they're picking */}
       <FlatList
         style={styles.list}
         data={allColors}
         keyExtractor={(item: Color, index) => item.name + '_' + index}
         renderItem={({ item }) => (
           <View style={styles.switch}>
-            <Text>{item.name}</Text>
+            <View style={styles.palette}>
+              <PaletteBox hex={item.hex} />
+              <Text>{item.name}</Text>
+            </View>
             <Switch
               value={!!selectedColors.find((color) => color.name === item.name)}
               onValueChange={(newValue) => handleUpdate(item, newValue)}
@@ -81,7 +86,6 @@ const AddNewPaletteModal: FC<NewPaletteModalProps> = ({
           </View>
         )}
       />
-      {/* TODO: disable the button if the form is invalid */}
       <TouchableOpacity style={styles.buttonWrapper} onPress={handleSubmit}>
         <View style={styles.button}>
           <Text style={styles.buttonText}>Submit Palette</Text>
@@ -95,6 +99,9 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     flex: 1,
+  },
+  inputLabel: {
+    marginHorizontal: 10,
   },
   input: {
     borderWidth: 1,
@@ -111,6 +118,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderBottomColor: '#cdcad5',
     borderBottomWidth: 1,
+    fontSize: 18,
   },
   list: {
     paddingHorizontal: 10,
@@ -133,6 +141,10 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
+  },
+  palette: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
 
